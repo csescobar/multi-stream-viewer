@@ -38,6 +38,9 @@ const streamingLinks = [
   },
 ]
 
+// Track the next available ID
+let nextStreamId = 5 // Start after the existing streams
+
 // Routes
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"))
@@ -96,7 +99,7 @@ app.post("/api/streams", (req, res) => {
   const processedUrl = processStreamUrl(url, type)
 
   const newStream = {
-    id: streamingLinks.length + 1,
+    id: nextStreamId++,
     title,
     url: processedUrl,
     type,
@@ -113,9 +116,17 @@ app.post("/api/streams", (req, res) => {
 // API endpoint to remove a stream
 app.delete("/api/streams/:id", (req, res) => {
   const streamId = parseInt(req.params.id)
+  console.log("Delete request for stream ID:", streamId)
+  console.log(
+    "Current streams:",
+    streamingLinks.map((s) => ({ id: s.id, title: s.title }))
+  )
+
   const index = streamingLinks.findIndex((stream) => stream.id === streamId)
+  console.log("Found stream at index:", index)
 
   if (index === -1) {
+    console.log("Stream not found")
     return res.status(404).json({
       success: false,
       message: "Stream not found",
@@ -123,6 +134,10 @@ app.delete("/api/streams/:id", (req, res) => {
   }
 
   streamingLinks.splice(index, 1)
+  console.log(
+    "Stream removed successfully. Remaining streams:",
+    streamingLinks.length
+  )
 
   res.json({
     success: true,

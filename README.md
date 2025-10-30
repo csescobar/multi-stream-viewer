@@ -86,14 +86,17 @@ You can modify the `streamingLinks` array in `server.js` to set your default str
 ## 📱 Screenshots
 
 ### Desktop View
+
 ![Desktop Layout](https://via.placeholder.com/800x600/1e3c72/ffffff?text=Multi-Stream+Viewer+Desktop)
 
 ### Mobile View
+
 ![Mobile Layout](https://via.placeholder.com/400x600/2a5298/ffffff?text=Multi-Stream+Viewer+Mobile)
 
 ## 🌐 Browser Compatibility
 
 ✅ **Fully Supported:**
+
 - Chrome 60+
 - Firefox 60+
 - Safari 12+

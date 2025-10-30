@@ -1,7 +1,7 @@
 class StreamManager {
   constructor() {
     this.streams = []
-    this.currentLayout = "grid-2x3"
+    this.currentLayout = "grid-2x2"
     this.init()
   }
 
@@ -165,11 +165,14 @@ class StreamManager {
     }
 
     try {
+      console.log("Attempting to remove stream with ID:", streamId)
       const response = await fetch(`/api/streams/${streamId}`, {
         method: "DELETE",
       })
 
+      console.log("Response status:", response.status)
       const data = await response.json()
+      console.log("Response data:", data)
 
       if (data.success) {
         this.loadStreams() // Refresh the stream list
@@ -178,7 +181,7 @@ class StreamManager {
       }
     } catch (error) {
       console.error("Error removing stream:", error)
-      alert("Failed to remove stream")
+      alert("Failed to remove stream: " + error.message)
     }
   }
 

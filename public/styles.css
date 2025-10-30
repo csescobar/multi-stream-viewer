@@ -68,12 +68,15 @@ main {
   gap: 1rem;
   width: 100%;
   height: calc(100vh - 120px);
+  min-height: 600px;
 }
 
 /* Grid Layouts */
 .grid-2x2 {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .grid-2x3 {
@@ -103,6 +106,7 @@ main {
   position: relative;
   border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  min-height: 250px;
 }
 
 .stream-frame:hover {
@@ -281,10 +285,16 @@ main {
 
   .stream-container {
     height: calc(100vh - 160px);
+    min-height: auto;
+  }
+
+  .grid-2x2 {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 250px);
+    max-width: none;
   }
 
   .grid-2x3,
-  .grid-2x2,
   .grid-3x3 {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(auto, 200px);
